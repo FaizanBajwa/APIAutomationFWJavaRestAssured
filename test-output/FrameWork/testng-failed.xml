@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [FrameWork]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Test(failed)">
+    <groups>
+      <run>
+        <include name="Usecase_Managmnet"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.restassured.usermanagment.api.testcases.UseCaseManagmentTest">
+        <methods>
+          <include name="createUsecase"/>
+          <include name="beforeMethod"/>
+        </methods>
+      </class> <!-- com.restassured.usermanagment.api.testcases.UseCaseManagmentTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [FrameWork] -->

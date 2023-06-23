@@ -1,0 +1,111 @@
+package com.restassured.utils;
+
+import java.nio.charset.Charset;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.spec.X509EncodedKeySpec;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Base64;
+import java.util.Date;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+import com.google.gson.Gson;
+
+public class TestUtils {
+	
+    public static final String RSA_ALGORITHM = "RSA";
+
+
+    public static String Encrypt(String text, String key) throws Exception {
+        // Changed PKCS7Padding to PKCS5Padding as cyper in java does not support PKCS7
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        byte[] keyBytes = new byte[16];
+        byte[] b = key.getBytes("UTF-8");
+        int len = b.length;
+        if (len > keyBytes.length)
+            len = keyBytes.length;
+        System.arraycopy(b, 0, keyBytes, 0, len);
+        SecretKeySpec keySpec = new SecretKeySpec(keyBytes, "AES");
+        IvParameterSpec ivSpec = new IvParameterSpec(keyBytes);
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
+
+        byte[] results = new byte[text.length()];
+        try {
+            results = cipher.doFinal(text.getBytes("UTF-8"));
+        } catch (Exception e) {
+            System.out.println("Error in Decryption" + e.toString());
+            throw e;
+        }
+        //one class for getting vlaue and verification for json
+        //
+        return Base64.getEncoder().encodeToString(results);
+    }
+    
+    public static String Decrypt(String text, String key) throws Exception {
+
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        byte[] keyBytes = new byte[16];
+
+        byte[] b = key.getBytes("UTF-8");
+        int len = b.length;
+        if (len > keyBytes.length)
+            len = keyBytes.length;
+        System.arraycopy(b, 0, keyBytes, 0, len);
+        SecretKeySpec keySpec = new SecretKeySpec(keyBytes, "AES");
+        IvParameterSpec ivSpec = new IvParameterSpec(keyBytes);
+        cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+        byte[] results = new byte[text.length()];
+        try {
+            //results = cipher.doFinal(android.util.Base64.decode(text, 0));
+            results = cipher.doFinal(Base64.getDecoder().decode(text));
+
+        } catch (Exception e) {
+            System.out.println("Erron in Decryption ====>" + e.toString());
+        }
+        System.out.println("Data ====> " + new String(results, "UTF-8"));
+        //DataHandler.terminology = "";
+        return new String(results, "UTF-8"); // it returns the result as a String
+
+    }
+    
+    public static String RSAEncode(String publicKey, String data) {
+        try {
+            publicKey = publicKey.replace("\n", "");
+
+            //Base64.decodeBase64(publicKey);
+
+            byte[] pks = Base64.getDecoder().decode(publicKey);;
+            X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(pks);
+            KeyFactory kf = KeyFactory.getInstance(RSA_ALGORITHM);
+            PublicKey pk;
+            pk = kf.generatePublic(x509EncodedKeySpec);
+            Cipher cp = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cp.init(Cipher.ENCRYPT_MODE, pk);
+            //org.apache.commons.codec.binary.Base64.encodeBase64URLSafeString(rsaSplitCodec(cp, Cipher.ENCRYPT_MODE, data.getBytes(CHARSET), Base64.decode(publicKey).getModulus().bitLength()));
+            //return Base64.encodeToString(cp.doFinal(data.getBytes(Charset.forName("UTF-8"))), Base64.NO_WRAP);
+            //System.out.println(Base64.encodeBase64String(cp.doFinal(data.getBytes(Charset.forName("UTF-8")))));
+            return Base64.getEncoder().encodeToString(cp.doFinal(data.getBytes(Charset.forName("UTF-8"))));
+        } catch (Exception e) {
+
+            //LogUtil.error("SecurityUtil",e);
+            return "";
+        }
+    }
+    
+    public static String getDateTime(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+    
+    public static String gsonString(Object obj) {
+		Gson gson = new Gson();
+		String json = gson.toJson(obj);
+		return json;
+	}
+	
+}
