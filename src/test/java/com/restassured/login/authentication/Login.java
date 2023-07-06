@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.restassured.constants.ApiUrls;
 import com.restassured.models.common.Data;
-import com.restassured.models.common.Example;
+import com.restassured.models.common.ApiModelZbox;
 import com.restassured.models.common.PayLoad;
 import com.restassured.models.headers.HeadersModel;
 import com.restassured.utils.TestUtils;
@@ -20,7 +20,7 @@ public class Login {
 
 	public Response login(String userName,String userPass) {
 				
-		Example example = new Example();
+		ApiModelZbox example = new ApiModelZbox();
 		example.setData(new Data());
 		example.getData().setPayLoad(new PayLoad());
 		example.getData().getPayLoad().setUserName(userName);

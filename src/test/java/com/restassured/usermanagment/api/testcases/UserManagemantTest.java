@@ -5,8 +5,9 @@ import org.testng.annotations.Test;
 
 import com.restassured.constants.ApiUrls;
 import com.restassured.login.authentication.Login;
+import com.restassured.models.common.ApiModelZbox;
 import com.restassured.models.common.Data;
-import com.restassured.models.common.Example;
+import com.restassured.models.common.ApiModelZbox;
 import com.restassured.models.common.PayLoad;
 import com.restassured.utils.TestUtils;
 
@@ -64,7 +65,7 @@ public class UserManagemantTest extends UserManagnmentBaseClass {
 	@Test(description = "Verify that user should not be able to login with invalid credentials",
 			groups = { "Login" })
 	void Test03() {
-		Example example = new Example();
+		ApiModelZbox example = new ApiModelZbox();
 		example.setData(new Data());
 		example.getData().setPayLoad(new PayLoad());
 		example.getData().getPayLoad().setUserName("hassan");

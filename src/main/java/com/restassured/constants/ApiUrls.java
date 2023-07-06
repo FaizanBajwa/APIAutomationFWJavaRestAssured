@@ -2,23 +2,10 @@ package com.restassured.constants;
 
 public class ApiUrls {
 
-	public static String baseUrl = "https://reqres.in";
-	public static String baseAuth = "http://coop.apps.symfonycasts.com";
 	public static String baseUserManagement = "http://10.0.0.13:8080/mfs_user_management/umngt";
 	public static String ZINDAGI_BASE_URL = "http://zindigi-qa.appinsnap.com/1.0.28-android";
 	public static String ZBOX_BASE_URL_QA = "http://10.0.1.4:8080";
 	public static String ZBOX_BASE_URL_DEV = "http://10.0.0.13:8080";
-
-	/*
-	 * ---------------------------------- Demo API's--------------------------------------------
-	 */
-	public static final String baseAuthSec = "http://coop.apps.symfonycasts.com/api/";
-	public static final String gettoken = baseAuth + "/token";
-	public static final String myProfile = baseAuth + "/api/me";
-	public static final String unlockTheBarn = "/barn-unlock";
-	public static final String putToiletSeatDown = "/toiletseat-down";
-	public static final String feedYourChickes = "/chickens-feed";
-	public static final String createNewUser = baseUrl + "/api/users";
 
 	/*
 	 * ---------------------------- ZBOX API's-------------------------------
@@ -30,6 +17,13 @@ public class ApiUrls {
 	public static final String UPDATE_USECASES ="/workflow/v1/management/updateusecase";
 	public static final String CREATE_USECASES ="/workflow/v1/management/createusecase";
 	
+	//AccountTypes
+	public static final String CREATE_NEW_ACCOUNT_TYPE ="/account/v1/accountype/createnewaccounttype";
+	public static final String GET_ALL_ACCOUNT_TYPES ="/account/v1/accountype/getallaccounttypes";
+	public static final String LKP_GET_ACCOUNT_TYPES ="/configuration/v1/lookups/getaccounttypes/LKP_ACCOUNT_LEVEL:*";
+	public static final String INACTIVE_ACCOUNT_TYPE ="/account/v1/accountype/inactiveaccounttype";
+	public static final String GET_KYC_SET = "/configuration/v1/lookups/getkycsets/TBL_KYC_SET_HEAD:*";
+	public static final String GET_CLIENT_ROLES ="/configuration/v1/lookups/getclientroles/LKP_ACCOUNT_CLASSIFICATION:*";
 	
 	/*
 	 * ---------------------------- Zindagi API's-------------------------------

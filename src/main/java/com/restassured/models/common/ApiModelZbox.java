@@ -1,6 +1,6 @@
 package com.restassured.models.common;
 
-public class Example {
+public class ApiModelZbox {
 
 	private Data data;
 

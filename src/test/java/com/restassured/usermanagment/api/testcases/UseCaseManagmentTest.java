@@ -15,7 +15,7 @@ import com.restassured.utils.ConfigManager;
 import com.restassured.utils.DBQueryExecutor;
 import com.restassured.utils.TestUtils;
 import com.restassured.models.common.Data;
-import com.restassured.models.common.Example;
+import com.restassured.models.common.ApiModelZbox;
 import com.restassured.models.common.PayLoad;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -28,7 +28,7 @@ import com.google.gson.Gson;
 public class UseCaseManagmentTest extends UserManagnmentBaseClass {
 	
 	private Map<String, Object> getHeaderList;
-	private Example example;
+	private ApiModelZbox example;
 	private ConfigManager getKey;
 	
 	@BeforeMethod(groups="Usecase_Managmnet")
@@ -50,7 +50,7 @@ public class UseCaseManagmentTest extends UserManagnmentBaseClass {
 	@Test(groups="Usecase_Managmnet",description="Create Usecase and verify newly created usecase")
 	public void createUsecase() {
 			
-		example = new Example();
+		example = new ApiModelZbox();
 		example.setData(new Data());
 		example.getData().setPayLoad(new PayLoad());
 		example.getData().getPayLoad().setTableName("TBL_TRANS_LIMIT");
@@ -64,7 +64,7 @@ public class UseCaseManagmentTest extends UserManagnmentBaseClass {
 		System.out.println(example.getData().getPayLoad().getTableName());		
 		Assert.assertEquals(response_create_usecase.jsonPath().getString("responseCode"), "0000");		
 		Assert.assertNotNull(response_create_usecase.jsonPath().getString("payLoad.mcConfigId"),"Attribute value should not be null");
-		example.getData().getPayLoad().setMcConfigId(response_create_usecase.jsonPath().getLong("payLoad.mcConfigId"));
+		example.getData().getPayLoad().setMcConfigId(response_create_usecase.jsonPath().getString("payLoad.mcConfigId"));
 		Assert.assertEquals(response_create_usecase.jsonPath().getString("message"), "Success");
 		Assert.assertEquals(response_create_usecase.jsonPath().getString("payLoad.tableName"), example.getData().getPayLoad().getTableName());
 		Assert.assertEquals(response_create_usecase.jsonPath().getString("payLoad.formName"), example.getData().getPayLoad().getFormName());
@@ -76,7 +76,7 @@ public class UseCaseManagmentTest extends UserManagnmentBaseClass {
 		String response_body_string = response_getall_usecases.getBody().asString();
 		JsonPath jsonPath = JsonPath.from(response_body_string);
 		List<Map<String, Object>> json_array = jsonPath.getList("payLoad");
-		int target_mcConfigId = (int) example.getData().getPayLoad().getMcConfigId();
+		int target_mcConfigId =Integer.parseInt(example.getData().getPayLoad().getMcConfigId());
 		Map<String, Object> target_json_object = null;		
 		for (Map<String, Object> json_object : json_array) {
 		    int mcConfigId =  (Integer) json_object.get("mcConfigId");
@@ -98,7 +98,7 @@ public class UseCaseManagmentTest extends UserManagnmentBaseClass {
 	@Test(groups="Usecase_Managmnet",description="Update Usecase and verify Updated usecase")
 	public void updateUseCase() {
 		
-		example = new Example();
+		example = new ApiModelZbox();
 		example.setData(new Data());
 		example.getData().setPayLoad(new PayLoad());
 		example.getData().getPayLoad().setTableName("TBL_TRANS_LIMIT");
@@ -112,7 +112,7 @@ public class UseCaseManagmentTest extends UserManagnmentBaseClass {
 		System.out.println(example.getData().getPayLoad().getTableName());		
 		Assert.assertEquals(response_create_usecase.jsonPath().getString("responseCode"), "0000");		
 		Assert.assertNotNull(response_create_usecase.jsonPath().getString("payLoad.mcConfigId"),"Attribute value should not be null");
-		example.getData().getPayLoad().setMcConfigId(response_create_usecase.jsonPath().getLong("payLoad.mcConfigId"));
+		example.getData().getPayLoad().setMcConfigId(response_create_usecase.jsonPath().getString("payLoad.mcConfigId"));
 		Assert.assertEquals(response_create_usecase.jsonPath().getString("message"), "Success");
 		Assert.assertEquals(response_create_usecase.jsonPath().getString("payLoad.tableName"), example.getData().getPayLoad().getTableName());
 		Assert.assertEquals(response_create_usecase.jsonPath().getString("payLoad.formName"), example.getData().getPayLoad().getFormName());
@@ -137,14 +137,11 @@ public class UseCaseManagmentTest extends UserManagnmentBaseClass {
 		String response_body_string = response_getall_usecases.getBody().asString();
 		JsonPath jsonPath = JsonPath.from(response_body_string);
 		List<Map<String, Object>> jsonArray = jsonPath.getList("payLoad");
-		int targetMcConfigId = (int) example.getData().getPayLoad().getMcConfigId();
+		int target_mcConfigId =Integer.parseInt(example.getData().getPayLoad().getMcConfigId());
 		Map<String, Object> targetJsonObject = null;	
 		for (Map<String, Object> jsonObject : jsonArray) {
 		    int mcConfigId =  (Integer) jsonObject.get("mcConfigId");
-		    if (mcConfigId == targetMcConfigId) {
-		        targetJsonObject = jsonObject;
-		        break;
-		    }
+		    
 		}
 		System.out.println("Target==>"+targetJsonObject.toString());		
 		Assert.assertNotNull(targetJsonObject, "Created usecase is not verified in get api");

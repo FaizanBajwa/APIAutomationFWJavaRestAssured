@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 import com.restassured.constants.ApiUrls;
 import com.restassured.login.authentication.Login;
 import com.restassured.models.common.Data;
-import com.restassured.models.common.Example;
+import com.restassured.models.common.ApiModelZbox;
 import com.restassured.models.common.PayLoad;
 import com.restassured.utils.TestUtils;
 

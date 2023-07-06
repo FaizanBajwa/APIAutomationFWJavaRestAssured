@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.restassured.constants.ApiUrls;
 import com.restassured.models.common.Data;
-import com.restassured.models.common.Example;
+import com.restassured.models.common.ApiModelZbox;
 import com.restassured.models.common.PayLoad;
 import com.restassured.utils.ConfigManager;
 import com.restassured.utils.TestUtils;
@@ -23,7 +23,7 @@ public class LoginSingleton {
 	public static List<String> login() throws IOException{
 			
 		ConfigManager get_keys = new ConfigManager();
-		Example example = new Example();
+		ApiModelZbox example = new ApiModelZbox();
 		example.setData(new Data());
 		example.getData().setPayLoad(new PayLoad());
 		example.getData().getPayLoad().setUserName(get_keys.getKeyValue("user_name"));
