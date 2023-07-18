@@ -7,6 +7,7 @@ import java.util.Map;
 import org.json.simple.JSONArray;
 
 import com.restassured.constants.ApiUrls;
+import com.restassured.utils.DBQueryExecutor;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -49,6 +50,19 @@ public class AccountTypesBaseClass {
 			System.out.println(e.toString());
 			return null;
 		}
+	}
+	
+	public static JSONArray getSearchCountFromDb() {
+		
+		String query ="SELECT *\r\n"
+				+ "FROM lkp_account_level\r\n"
+				+ "WHERE account_classification_id = 1\r\n"
+				+ "AND trunc(createdate) between '01-JUL-2023' AND '05-JUL-2023'";
+		System.out.println(query);
+		DBQueryExecutor dbQueryExecutor = new DBQueryExecutor();
+		JSONArray dbResponse = dbQueryExecutor.getDataByQuery(query);
+			
+		return dbResponse;
 	}
 
 }

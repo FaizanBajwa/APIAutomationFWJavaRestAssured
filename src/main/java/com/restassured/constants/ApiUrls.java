@@ -24,6 +24,8 @@ public class ApiUrls {
 	public static final String INACTIVE_ACCOUNT_TYPE ="/account/v1/accountype/inactiveaccounttype";
 	public static final String GET_KYC_SET = "/configuration/v1/lookups/getkycsets/TBL_KYC_SET_HEAD:*";
 	public static final String GET_CLIENT_ROLES ="/configuration/v1/lookups/getclientroles/LKP_ACCOUNT_CLASSIFICATION:*";
+	public static final String GET_ACCOUNT_TYPE_BY_ID ="/account/v1/accountype/getAccountTypeById/";
+	public static final String Update_EXISTING_ACCOUNT_TYPE ="/account/v1/accountype/updateexistingaccounttype";
 	
 	/*
 	 * ---------------------------- Zindagi API's-------------------------------

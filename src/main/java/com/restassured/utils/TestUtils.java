@@ -5,9 +5,12 @@ import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Base64;
 import java.util.Date;
+import java.util.Random;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -107,5 +110,31 @@ public class TestUtils {
 		String json = gson.toJson(obj);
 		return json;
 	}
+    
+    public static boolean isDateFormatValid(String date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        dateFormat.setLenient(false); // Set lenient mode to strict parsing
+
+        try {
+            dateFormat.parse(date);
+            return true; // Date format is valid
+        } catch (ParseException e) {
+            return false; // Date format is not valid
+        }
+    }
+	
+    public static boolean isWithinRange(String tDate,String sDate,String eDate) {
+    		LocalDate startDate = LocalDate.parse(sDate);
+    		LocalDate endDate = LocalDate.parse(eDate);
+    		LocalDate testDate = LocalDate.parse(eDate);
+    	   return !(testDate.isBefore(startDate) || testDate.isAfter(endDate));
+    	}
+    
+    public static Integer getRandomNum() {
+    	int selected = 0;
+    	Random rand = new Random();
+    	selected = rand.nextInt(1000000000);
+    	return selected;
+    }
 	
 }

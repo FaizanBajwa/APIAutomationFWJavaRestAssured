@@ -25,7 +25,20 @@ public class PayLoad {
 	private String yearlyTransLimitCr;
 	private String accountLevelId;
 	private String accountClassificationId;
+	private String maxAmtLimit;
+	private String dateFrom;
+	private String dateTo;
+	private String createdBy;
+	private String updatedBy;
+	private String statusId;
+	private String yearlyAmtLimitCr;
 	
+	public String getMaxAmtLimit() {
+		return maxAmtLimit;
+	}
+	public void setMaxAmtLimit(String maxAmtLimit) {
+		this.maxAmtLimit = maxAmtLimit;
+	}
 	public String getAccountClassificationId() {
 		return accountClassificationId;
 	}
@@ -61,14 +74,7 @@ public class PayLoad {
 	}
 	public void setStatusId(String statusId) {
 		this.statusId = statusId;
-	}
-	private String dateFrom;
-	private String dateTo;
-	private String createdBy;
-	private String updatedBy;
-	private String statusId;
-	
-	
+	}	
 	public String getAccountLevelId() {
 		return accountLevelId;
 	}
@@ -165,10 +171,6 @@ public class PayLoad {
 	public void setYearlyAmtLimitCr(String yearlyAmtLimitCr) {
 		this.yearlyAmtLimitCr = yearlyAmtLimitCr;
 	}
-	private String yearlyAmtLimitCr;
-	
-		
-	
 	public String getMcConfigId() {
 		return mcConfigId;
 	}
