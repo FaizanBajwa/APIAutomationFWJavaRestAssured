@@ -9,9 +9,9 @@ import org.testng.annotations.BeforeTest;
 import com.google.gson.Gson;
 import com.restassured.constants.ApiUrls;
 import com.restassured.login.authentication.Login;
-import com.restassured.models.common.Data;
-import com.restassured.models.common.ApiModelZbox;
-import com.restassured.models.common.PayLoad;
+import com.restassured.models.limits.ApiModelZbox;
+import com.restassured.models.limits.Data;
+import com.restassured.models.limits.PayLoad;
 import com.restassured.utils.TestUtils;
 
 import io.restassured.http.ContentType;

@@ -5,10 +5,9 @@ import org.testng.annotations.Test;
 
 import com.restassured.constants.ApiUrls;
 import com.restassured.login.authentication.Login;
-import com.restassured.models.common.ApiModelZbox;
-import com.restassured.models.common.Data;
-import com.restassured.models.common.ApiModelZbox;
-import com.restassured.models.common.PayLoad;
+import com.restassured.models.limits.ApiModelZbox;
+import com.restassured.models.limits.Data;
+import com.restassured.models.limits.PayLoad;
 import com.restassured.utils.TestUtils;
 
 import java.util.Set;

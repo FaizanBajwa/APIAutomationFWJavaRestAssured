@@ -9,9 +9,9 @@ import java.util.List;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.restassured.constants.ApiUrls;
-import com.restassured.models.common.Data;
-import com.restassured.models.common.ApiModelZbox;
-import com.restassured.models.common.PayLoad;
+import com.restassured.models.limits.ApiModelZbox;
+import com.restassured.models.limits.Data;
+import com.restassured.models.limits.PayLoad;
 import com.restassured.utils.ConfigManager;
 import com.restassured.utils.TestUtils;
 
