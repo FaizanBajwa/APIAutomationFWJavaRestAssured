@@ -1,4 +1,7 @@
 APIAutomationFWJavaRestAssured/test-output/
 APIAutomationFWJavaRestAssured/allure-results/
 APIAutomationFWJavaRestAssured/target/
-/target/
+.allure
+/allure-results
+src/test/java/com/restassured/login
+test-output
