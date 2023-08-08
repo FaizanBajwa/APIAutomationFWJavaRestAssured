@@ -27,6 +27,14 @@ public class ApiUrls {
 	public static final String GET_ACCOUNT_TYPE_BY_ID ="/account/v1/accountype/getAccountTypeById/";
 	public static final String Update_EXISTING_ACCOUNT_TYPE ="/account/v1/accountype/updateexistingaccounttype";
 	
+	//LIMITS
+	public static final String LK_GET_TRANSACTIONPROFILELIMITDATA = "/configuration/v1/lookups/gettransactionprofilelimitdata/TBL_TRANS_LIMIT:*";
+	public static final String LK_GET_ACCOUNTTYPES="/configuration/v1/lookups/getaccounttypes/LKP_ACCOUNT_LEVEL:*";
+	public static final String LK_GET_TRANSACTIONTYPES="/configuration/v1/lookups/gettransactiontypes/TBL_PRODUCT:*";
+	public static final String CREATE_TRANSACTIONWISELIMITPROFILE="/limits/v1/limitsprofiles/createtrasactionwiselimitprofile";
+	public static final String GETALLTRANDACTIONWISELIMITPROFILES="/limits/v1/limitsprofiles/getalltransactionwiselimitprofiles";
+	public static final String INACTIVETRANSACTIONWISELIMITPROFILE="/limits/v1/limitsprofiles/inactivertransactionwiselimitprofile";
+	public static final String UPDATETRANDACTIONWISELIMITPROFILE="/limits/v1/limitsprofiles/updatetransactionwiselimitprofile";
 	/*
 	 * ---------------------------- Zindagi API's-------------------------------
 	 */
