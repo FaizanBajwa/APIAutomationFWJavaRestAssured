@@ -1,0 +1,11 @@
+{
+    "responseCode": "022000",
+    "message": "Invalid Token",
+    "channel": null,
+    "terminal": null,
+    "transactionDate": null,
+    "reterivalReferenceNumber": null,
+    "payLoad": null,
+    "errors": null,
+    "checkSum": null
+}

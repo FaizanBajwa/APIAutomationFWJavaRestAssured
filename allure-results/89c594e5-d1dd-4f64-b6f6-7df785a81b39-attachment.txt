@@ -1,0 +1,14 @@
+{
+    "responseCode": "021301",
+    "message": "This record is already pending for approval",
+    "channel": null,
+    "terminal": null,
+    "transactionDate": null,
+    "reterivalReferenceNumber": null,
+    "payLoad": {
+        "status": 0,
+        "statusDecsr": "This record is already pending for approval"
+    },
+    "errors": null,
+    "checkSum": null
+}
