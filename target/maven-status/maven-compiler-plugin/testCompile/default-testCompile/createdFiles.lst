@@ -1,0 +1,10 @@
+com\restassured\zindgi\testcases\LoginObj.class
+com\restassured\zindgi\testcases\Z2ZTransferBaseClass.class
+com\restassured\zindgi\testcases\Z2ZTransfer.class
+com\restassured\usermanagment\api\testcases\UserManagnmentBaseClass.class
+com\restassured\usermanagment\api\testcases\UserManagemantTest.class
+com\restassured\login\authentication\Login$1.class
+com\restassured\login\authentication\Login.class
+com\restassured\login\authentication\LoginSingleton.class
+com\restassured\usermanagment\api\testcases\UseCaseManagmentTest.class
+com\restassured\zindgi\testcases\Login.class

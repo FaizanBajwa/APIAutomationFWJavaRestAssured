@@ -1,0 +1,45 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "name" : "packages",
+  "children" : [ {
+    "name" : "com.restassured.usermanagment.api.testcases.UseCaseManagmentTest",
+    "children" : [ {
+      "name" : "createUsecase",
+      "uid" : "a26a7314df38f994",
+      "parentUid" : "cef7e66dc282d3b7fb0d008c19d5b2d0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1687247771966,
+        "stop" : 1687247775602,
+        "duration" : 3636
+      },
+      "flaky" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "getAllUseCases",
+      "uid" : "69fe9e53abe53e6",
+      "parentUid" : "cef7e66dc282d3b7fb0d008c19d5b2d0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1687247775616,
+        "stop" : 1687247776146,
+        "duration" : 530
+      },
+      "flaky" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "updateUseCase",
+      "uid" : "c6eaea07ba5b5fba",
+      "parentUid" : "cef7e66dc282d3b7fb0d008c19d5b2d0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1687247776154,
+        "stop" : 1687247777499,
+        "duration" : 1345
+      },
+      "flaky" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "com.restassured.usermanagment.api.testcases.UseCaseManagmentTest"
+  } ]
+}

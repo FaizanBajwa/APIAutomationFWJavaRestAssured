@@ -1,0 +1,4 @@
+"Status","Name","Duration in ms","Description"
+"passed","com.restassured.usermanagment.api.testcases.UseCaseManagmentTest.createUsecase","3636",""
+"passed","com.restassured.usermanagment.api.testcases.UseCaseManagmentTest.updateUseCase","1345",""
+"passed","com.restassured.usermanagment.api.testcases.UseCaseManagmentTest.getAllUseCases","530",""

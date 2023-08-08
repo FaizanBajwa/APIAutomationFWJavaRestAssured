@@ -1,0 +1,49 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "Usercase Managment",
+    "children" : [ {
+      "name" : "User Managment",
+      "children" : [ {
+        "name" : "Create Usecase and verify newly created usecase",
+        "uid" : "a26a7314df38f994",
+        "parentUid" : "c36bbf1bc612fb5158a00bae1bd7c6b5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1687247771966,
+          "stop" : 1687247775602,
+          "duration" : 3636
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "Get All Usecases",
+        "uid" : "69fe9e53abe53e6",
+        "parentUid" : "c36bbf1bc612fb5158a00bae1bd7c6b5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1687247775616,
+          "stop" : 1687247776146,
+          "duration" : 530
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "Update Usecase and verify Updated usecase",
+        "uid" : "c6eaea07ba5b5fba",
+        "parentUid" : "c36bbf1bc612fb5158a00bae1bd7c6b5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1687247776154,
+          "stop" : 1687247777499,
+          "duration" : 1345
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c36bbf1bc612fb5158a00bae1bd7c6b5"
+    } ],
+    "uid" : "d883e549e63c6c3826159ffa412f421c"
+  } ]
+}

@@ -1,0 +1,86 @@
+{
+  "uid" : "c6eaea07ba5b5fba",
+  "name" : "Update Usecase and verify Updated usecase",
+  "fullName" : "com.restassured.usermanagment.api.testcases.UseCaseManagmentTest.updateUseCase",
+  "historyId" : "16712fc57b0eb69a85984bb679afb21f",
+  "time" : {
+    "start" : 1687247776154,
+    "stop" : 1687247777499,
+    "duration" : 1345
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ {
+    "name" : "beforeMethod",
+    "time" : {
+      "start" : 1687247776149,
+      "stop" : 1687247776149,
+      "duration" : 0
+    },
+    "description" : "",
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "com.restassured.usermanagment.api.testcases.UseCaseManagmentTest"
+  }, {
+    "name" : "testClass",
+    "value" : "com.restassured.usermanagment.api.testcases.UseCaseManagmentTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "updateUseCase"
+  }, {
+    "name" : "parentSuite",
+    "value" : "Surefire suite"
+  }, {
+    "name" : "suite",
+    "value" : "Surefire test"
+  }, {
+    "name" : "subSuite",
+    "value" : "com.restassured.usermanagment.api.testcases.UseCaseManagmentTest"
+  }, {
+    "name" : "host",
+    "value" : "DESKTOP-8QIQ87H"
+  }, {
+    "name" : "thread",
+    "value" : "66152@DESKTOP-8QIQ87H.main(1)"
+  }, {
+    "name" : "framework",
+    "value" : "testng"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "feature",
+    "value" : "Usercase Managment"
+  }, {
+    "name" : "story",
+    "value" : "User Managment"
+  }, {
+    "name" : "severity",
+    "value" : "critical"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "critical",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "c6eaea07ba5b5fba.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,53 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "Surefire suite",
+    "children" : [ {
+      "name" : "Surefire test",
+      "children" : [ {
+        "name" : "com.restassured.usermanagment.api.testcases.UseCaseManagmentTest",
+        "children" : [ {
+          "name" : "Create Usecase and verify newly created usecase",
+          "uid" : "a26a7314df38f994",
+          "parentUid" : "73ff95352c04bb625b770debe6bb1df0",
+          "status" : "passed",
+          "time" : {
+            "start" : 1687247771966,
+            "stop" : 1687247775602,
+            "duration" : 3636
+          },
+          "flaky" : false,
+          "parameters" : [ ]
+        }, {
+          "name" : "Get All Usecases",
+          "uid" : "69fe9e53abe53e6",
+          "parentUid" : "73ff95352c04bb625b770debe6bb1df0",
+          "status" : "passed",
+          "time" : {
+            "start" : 1687247775616,
+            "stop" : 1687247776146,
+            "duration" : 530
+          },
+          "flaky" : false,
+          "parameters" : [ ]
+        }, {
+          "name" : "Update Usecase and verify Updated usecase",
+          "uid" : "c6eaea07ba5b5fba",
+          "parentUid" : "73ff95352c04bb625b770debe6bb1df0",
+          "status" : "passed",
+          "time" : {
+            "start" : 1687247776154,
+            "stop" : 1687247777499,
+            "duration" : 1345
+          },
+          "flaky" : false,
+          "parameters" : [ ]
+        } ],
+        "uid" : "73ff95352c04bb625b770debe6bb1df0"
+      } ],
+      "uid" : "1fcb2e6ec8e5b5e8a1f2a70b87c80b24"
+    } ],
+    "uid" : "940a09faf31371a51747026c9d178f0a"
+  } ]
+}

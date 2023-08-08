@@ -1,0 +1,49 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "DESKTOP-8QIQ87H",
+    "children" : [ {
+      "name" : "66152@DESKTOP-8QIQ87H.main(1)",
+      "children" : [ {
+        "name" : "Create Usecase and verify newly created usecase",
+        "uid" : "a26a7314df38f994",
+        "parentUid" : "f209a5dde17f184a468125b59fd7753d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1687247771966,
+          "stop" : 1687247775602,
+          "duration" : 3636
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "Update Usecase and verify Updated usecase",
+        "uid" : "c6eaea07ba5b5fba",
+        "parentUid" : "f209a5dde17f184a468125b59fd7753d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1687247776154,
+          "stop" : 1687247777499,
+          "duration" : 1345
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "Get All Usecases",
+        "uid" : "69fe9e53abe53e6",
+        "parentUid" : "f209a5dde17f184a468125b59fd7753d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1687247775616,
+          "stop" : 1687247776146,
+          "duration" : 530
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "f209a5dde17f184a468125b59fd7753d"
+    } ],
+    "uid" : "aa7dd510f2fcc734097ac7a9efc16e7c"
+  } ]
+}

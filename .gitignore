@@ -1,1 +1,10 @@
-/target/
+.allure
+.gitignore
+/allure-results
+test-output
+/allure-report
+src/test/java/com/restassured/login
+AIS_Test/test-output/
+AIS_Test/allure-results/
+AIS_Test/test-output/
+

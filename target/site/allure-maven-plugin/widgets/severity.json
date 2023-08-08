@@ -1,0 +1,31 @@
+[ {
+  "uid" : "a26a7314df38f994",
+  "name" : "Create Usecase and verify newly created usecase",
+  "time" : {
+    "start" : 1687247771966,
+    "stop" : 1687247775602,
+    "duration" : 3636
+  },
+  "status" : "passed",
+  "severity" : "critical"
+}, {
+  "uid" : "c6eaea07ba5b5fba",
+  "name" : "Update Usecase and verify Updated usecase",
+  "time" : {
+    "start" : 1687247776154,
+    "stop" : 1687247777499,
+    "duration" : 1345
+  },
+  "status" : "passed",
+  "severity" : "critical"
+}, {
+  "uid" : "69fe9e53abe53e6",
+  "name" : "Get All Usecases",
+  "time" : {
+    "start" : 1687247775616,
+    "stop" : 1687247776146,
+    "duration" : 530
+  },
+  "status" : "passed",
+  "severity" : "critical"
+} ]
