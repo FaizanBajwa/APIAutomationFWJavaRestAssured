@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Random;
@@ -136,5 +137,15 @@ public class TestUtils {
     	selected = rand.nextInt(1000000000);
     	return selected;
     }
-	
+
+    public static String getCurrentDate(String pattern) {
+        // Get the current date
+        LocalDate currentDate = LocalDate.now();
+
+        // Create a DateTimeFormatter for the desired format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+
+        // Format the date and return as a string
+        return currentDate.format(formatter);
+    }
 }

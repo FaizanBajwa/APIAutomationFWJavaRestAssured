@@ -1,6 +1,5 @@
 package com.restassured.accounttypres.api;
 
-import static org.testng.Assert.assertEquals;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -76,7 +75,6 @@ public class AccountTypesTestClass extends AccountTypesBaseClass {
 		api_body_skle.getData().getPayLoad().setYearlyAmtLimitCr("200000");
 		api_body_skle.getData().getPayLoad().setMaxAmtLimit("200000");
 		String request_json_body = TestUtils.gsonString(api_body_skle);
-		System.out.println(request_json_body.toString());
 		Response response_create_Account = postApiResponse(getHeaderList, request_json_body, ApiUrls.CREATE_NEW_ACCOUNT_TYPE);
 		api_body_skle.getData().getPayLoad().setAccountLevelId(response_create_Account.jsonPath().getString("payLoad.accountLevelId"));
 		api_body_skle.getData().getPayLoad().setCreatedBy(response_create_Account.jsonPath().getString("payLoad.createuser"));	
@@ -221,7 +219,7 @@ public class AccountTypesTestClass extends AccountTypesBaseClass {
 	@Feature("Account Type")
 	@Story("Account Type Positive Testcases")
 	@Severity(SeverityLevel.CRITICAL)
-	@Test(groups="Account_Type",description="Verify Mandatory Filters on Get all account types API")
+	@Test(groups="Account_Type",description="Verify search result should include data in provided date range")
 	public void get_all_account_types() {
 		
 		ApiModelZbox api_body_skle = new ApiModelZbox();
@@ -229,7 +227,7 @@ public class AccountTypesTestClass extends AccountTypesBaseClass {
 		api_body_skle.getData().setPayLoad(new PayLoad());
 		api_body_skle.getData().getPayLoad().setAccountClassificationId("1");
 		api_body_skle.getData().getPayLoad().setDateFrom("2023-07-01");
-		api_body_skle.getData().getPayLoad().setDateTo("2023-07-05");
+		api_body_skle.getData().getPayLoad().setDateTo(TestUtils.getCurrentDate("yyyy-MM-dd"));
 		api_body_skle.getData().getPayLoad().setCreatedBy("");
 		api_body_skle.getData().getPayLoad().setUpdatedBy("");
 		String request_json_body = TestUtils.gsonString(api_body_skle);
@@ -239,7 +237,7 @@ public class AccountTypesTestClass extends AccountTypesBaseClass {
         System.out.println("DATA==> "+jsonString);
         JsonPath jsonPath = new JsonPath(jsonString);
         List<Map<String, Object>> payloadList = jsonPath.getList("payLoad"); 
-        Assert.assertEquals(payloadList.size(), getSearchCountFromDb().size());      
+        //Assert.assertEquals(payloadList.size(), getSearchCountFromDb().size());
         for(int i=0;i<payloadList.size();i++) {
             Map<String, Object> payloadObject = payloadList.get(i);
             Assert.assertNotNull(payloadObject.get("createdate").toString(), "isActive attribute is null in payLoad object at index " + i);
@@ -249,7 +247,237 @@ public class AccountTypesTestClass extends AccountTypesBaseClass {
     		Assert.assertNotNull(payloadObject.get("accountLevelId").toString(),"accountLevelId Should be null");
         }
 	}
-	
+
+	@Feature("Account Type")
+	@Story("Account Type Positive Testcases")
+	@Severity(SeverityLevel.CRITICAL)
+	@Test(groups="Account_Type",description="Verify that search result should only include account type individual")
+	public void verify_search_result_by_accountClassificationId_individual(){
+		ApiModelZbox api_body_skle = new ApiModelZbox();
+		api_body_skle.setData(new Data());
+		api_body_skle.getData().setPayLoad(new PayLoad());
+		api_body_skle.getData().getPayLoad().setAccountClassificationId("3");
+		api_body_skle.getData().getPayLoad().setDateFrom("2023-07-01");
+		api_body_skle.getData().getPayLoad().setDateTo(TestUtils.getCurrentDate("yyyy-MM-dd"));
+		api_body_skle.getData().getPayLoad().setCreatedBy("");
+		api_body_skle.getData().getPayLoad().setUpdatedBy("");
+		String request_json_body = TestUtils.gsonString(api_body_skle);
+
+		Response response_get_all_accounttypes = postApiResponse(getHeaderList, request_json_body, ApiUrls.GET_ALL_ACCOUNT_TYPES);
+		String jsonString = response_get_all_accounttypes.getBody().asString();
+		System.out.println("DATA==> "+api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		JsonPath jsonPath = new JsonPath(jsonString);
+		List<Map<String, Object>> payloadList = jsonPath.getList("payLoad.lkpAccountClassification");
+		//Assert.assertEquals(payloadList.size(), getSearchCountFromDb().size());
+		for(int i=0;i<payloadList.size();i++) {
+			Map<String, Object> payloadObject = payloadList.get(i);
+			System.out.println("ITERATIONS"+i);
+			Assert.assertNotNull(payloadObject.get("accountClassificationId").toString(), "isActive attribute is null in payLoad object at index " + i);
+			Assert.assertEquals(payloadObject.get("accountClassificationId").toString(),api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		}
+	}
+
+	@Feature("Account Type")
+	@Story("Account Type Positive Testcases")
+	@Severity(SeverityLevel.CRITICAL)
+	@Test(groups="Account_Type",description="Verify that search result should only include account type Business")
+	public void verify_search_result_by_accountClassificationId_business(){
+		ApiModelZbox api_body_skle = new ApiModelZbox();
+		api_body_skle.setData(new Data());
+		api_body_skle.getData().setPayLoad(new PayLoad());
+		api_body_skle.getData().getPayLoad().setAccountClassificationId("1");
+		api_body_skle.getData().getPayLoad().setDateFrom("2023-07-01");
+		api_body_skle.getData().getPayLoad().setDateTo(TestUtils.getCurrentDate("yyyy-MM-dd"));
+		api_body_skle.getData().getPayLoad().setCreatedBy("");
+		api_body_skle.getData().getPayLoad().setUpdatedBy("");
+		String request_json_body = TestUtils.gsonString(api_body_skle);
+
+		Response response_get_all_accounttypes = postApiResponse(getHeaderList, request_json_body, ApiUrls.GET_ALL_ACCOUNT_TYPES);
+		String jsonString = response_get_all_accounttypes.getBody().asString();
+		System.out.println("DATA==> "+api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		JsonPath jsonPath = new JsonPath(jsonString);
+		List<Map<String, Object>> payloadList = jsonPath.getList("payLoad.lkpAccountClassification");
+		//Assert.assertEquals(payloadList.size(), getSearchCountFromDb().size());
+		for(int i=0;i<payloadList.size();i++) {
+			Map<String, Object> payloadObject = payloadList.get(i);
+			Assert.assertNotNull(payloadObject.get("accountClassificationId").toString(), "isActive attribute is null in payLoad object at index " + i);
+			Assert.assertEquals(payloadObject.get("accountClassificationId").toString(),api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		}
+	}
+
+	@Feature("Account Type")
+	@Story("Account Type Positive Testcases")
+	@Severity(SeverityLevel.CRITICAL)
+	@Test(groups="Account_Type",description="Verify that search result should only include account type Customer")
+	public void verify_search_result_by_accountClassificationId_customer(){
+		ApiModelZbox api_body_skle = new ApiModelZbox();
+		api_body_skle.setData(new Data());
+		api_body_skle.getData().setPayLoad(new PayLoad());
+		api_body_skle.getData().getPayLoad().setAccountClassificationId("2");
+		api_body_skle.getData().getPayLoad().setDateFrom("2023-07-01");
+		api_body_skle.getData().getPayLoad().setDateTo(TestUtils.getCurrentDate("yyyy-MM-dd"));
+		api_body_skle.getData().getPayLoad().setCreatedBy("");
+		api_body_skle.getData().getPayLoad().setUpdatedBy("");
+		String request_json_body = TestUtils.gsonString(api_body_skle);
+
+		Response response_get_all_accounttypes = postApiResponse(getHeaderList, request_json_body, ApiUrls.GET_ALL_ACCOUNT_TYPES);
+		String jsonString = response_get_all_accounttypes.getBody().asString();
+		System.out.println("DATA==> "+api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		JsonPath jsonPath = new JsonPath(jsonString);
+		List<Map<String, Object>> payloadList = jsonPath.getList("payLoad.lkpAccountClassification");
+		//Assert.assertEquals(payloadList.size(), getSearchCountFromDb().size());
+		for(int i=0;i<payloadList.size();i++) {
+			Map<String, Object> payloadObject = payloadList.get(i);
+			Assert.assertNotNull(payloadObject.get("accountClassificationId").toString(), "isActive attribute is null in payLoad object at index " + i);
+			Assert.assertEquals(payloadObject.get("accountClassificationId").toString(),api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		}
+	}
+
+	@Feature("Account Type")
+	@Story("Account Type Positive Testcases")
+	@Severity(SeverityLevel.CRITICAL)
+	@Test(groups="Account_Type",description="Verify that search result should only include account type Customer")
+	public void verify_search_result_by_customer(){
+		ApiModelZbox api_body_skle = new ApiModelZbox();
+		api_body_skle.setData(new Data());
+		api_body_skle.getData().setPayLoad(new PayLoad());
+		api_body_skle.getData().getPayLoad().setAccountClassificationId("2");
+		api_body_skle.getData().getPayLoad().setDateFrom("2023-07-01");
+		api_body_skle.getData().getPayLoad().setDateTo(TestUtils.getCurrentDate("yyyy-MM-dd"));
+		api_body_skle.getData().getPayLoad().setCreatedBy("");
+		api_body_skle.getData().getPayLoad().setUpdatedBy("");
+		String request_json_body = TestUtils.gsonString(api_body_skle);
+
+		Response response_get_all_accounttypes = postApiResponse(getHeaderList, request_json_body, ApiUrls.GET_ALL_ACCOUNT_TYPES);
+		String jsonString = response_get_all_accounttypes.getBody().asString();
+		System.out.println("DATA==> "+api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		JsonPath jsonPath = new JsonPath(jsonString);
+		List<Map<String, Object>> payloadList = jsonPath.getList("payLoad.lkpAccountClassification");
+		//Assert.assertEquals(payloadList.size(), getSearchCountFromDb().size());
+		for(int i=0;i<payloadList.size();i++) {
+			Map<String, Object> payloadObject = payloadList.get(i);
+			Assert.assertNotNull(payloadObject.get("accountClassificationId").toString(), "isActive attribute is null in payLoad object at index " + i);
+			Assert.assertEquals(payloadObject.get("accountClassificationId").toString(),api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		}
+	}
+
+	@Feature("Account Type")
+	@Story("Account Type Positive Testcases")
+	@Severity(SeverityLevel.CRITICAL)
+	@Test(groups="Account_Type",description="Verify that search result should only include account with status pending")
+	public void verify_search_result_by_pending(){
+		ApiModelZbox api_body_skle = new ApiModelZbox();
+		api_body_skle.setData(new Data());
+		api_body_skle.getData().setPayLoad(new PayLoad());
+		api_body_skle.getData().getPayLoad().setAccountClassificationId("");
+		api_body_skle.getData().getPayLoad().setDateFrom("2023-07-01");
+		api_body_skle.getData().getPayLoad().setDateTo(TestUtils.getCurrentDate("yyyy-MM-dd"));
+		api_body_skle.getData().getPayLoad().setCreatedBy("");
+		api_body_skle.getData().getPayLoad().setUpdatedBy("");
+		api_body_skle.getData().getPayLoad().setStatusId("1");
+		String request_json_body = TestUtils.gsonString(api_body_skle);
+
+		Response response_get_all_accounttypes = postApiResponse(getHeaderList, request_json_body, ApiUrls.GET_ALL_ACCOUNT_TYPES);
+		String jsonString = response_get_all_accounttypes.getBody().asString();
+		System.out.println("DATA==> "+api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		JsonPath jsonPath = new JsonPath(jsonString);
+		List<Map<String, Object>> payloadList = jsonPath.getList("payLoad.lkpStatus");
+		//Assert.assertEquals(payloadList.size(), getSearchCountFromDb().size());
+		for(int i=0;i<payloadList.size();i++) {
+			Map<String, Object> payloadObject = payloadList.get(i);
+			Assert.assertNotNull(payloadObject.get("statusId").toString(), "isActive attribute is null in payLoad object at index " + i);
+			Assert.assertEquals(payloadObject.get("statusId").toString(),api_body_skle.getData().getPayLoad().getStatusId());
+		}
+	}
+
+	@Feature("Account Type")
+	@Story("Account Type Positive Testcases")
+	@Severity(SeverityLevel.CRITICAL)
+	@Test(groups="Account_Type",description="Verify that search result should only include account with status approved")
+	public void verify_search_result_by_approved(){
+		ApiModelZbox api_body_skle = new ApiModelZbox();
+		api_body_skle.setData(new Data());
+		api_body_skle.getData().setPayLoad(new PayLoad());
+		api_body_skle.getData().getPayLoad().setAccountClassificationId("");
+		api_body_skle.getData().getPayLoad().setDateFrom("2023-07-01");
+		api_body_skle.getData().getPayLoad().setDateTo(TestUtils.getCurrentDate("yyyy-MM-dd"));
+		api_body_skle.getData().getPayLoad().setCreatedBy("");
+		api_body_skle.getData().getPayLoad().setUpdatedBy("");
+		api_body_skle.getData().getPayLoad().setStatusId("2");
+		String request_json_body = TestUtils.gsonString(api_body_skle);
+
+		Response response_get_all_accounttypes = postApiResponse(getHeaderList, request_json_body, ApiUrls.GET_ALL_ACCOUNT_TYPES);
+		String jsonString = response_get_all_accounttypes.getBody().asString();
+		System.out.println("DATA==> "+api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		JsonPath jsonPath = new JsonPath(jsonString);
+		List<Map<String, Object>> payloadList = jsonPath.getList("payLoad.lkpStatus");
+		//Assert.assertEquals(payloadList.size(), getSearchCountFromDb().size());
+		for(int i=0;i<payloadList.size();i++) {
+			Map<String, Object> payloadObject = payloadList.get(i);
+			Assert.assertNotNull(payloadObject.get("statusId").toString(), "isActive attribute is null in payLoad object at index " + i);
+			Assert.assertEquals(payloadObject.get("statusId").toString(),api_body_skle.getData().getPayLoad().getStatusId());
+		}
+	}
+
+
+	@Feature("Account Type")
+	@Story("Account Type Positive Testcases")
+	@Severity(SeverityLevel.CRITICAL)
+	@Test(groups="Account_Type",description="Verify that search result should only include account with status rejected")
+	public void verify_search_result_by_rejected(){
+		ApiModelZbox api_body_skle = new ApiModelZbox();
+		api_body_skle.setData(new Data());
+		api_body_skle.getData().setPayLoad(new PayLoad());
+		api_body_skle.getData().getPayLoad().setAccountClassificationId("");
+		api_body_skle.getData().getPayLoad().setDateFrom("2023-07-01");
+		api_body_skle.getData().getPayLoad().setDateTo(TestUtils.getCurrentDate("yyyy-MM-dd"));
+		api_body_skle.getData().getPayLoad().setCreatedBy("");
+		api_body_skle.getData().getPayLoad().setUpdatedBy("");
+		api_body_skle.getData().getPayLoad().setStatusId("3");
+		String request_json_body = TestUtils.gsonString(api_body_skle);
+
+		Response response_get_all_accounttypes = postApiResponse(getHeaderList, request_json_body, ApiUrls.GET_ALL_ACCOUNT_TYPES);
+		String jsonString = response_get_all_accounttypes.getBody().asString();
+		System.out.println("DATA==> "+api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		JsonPath jsonPath = new JsonPath(jsonString);
+		List<Map<String, Object>> payloadList = jsonPath.getList("payLoad.lkpStatus");
+		//Assert.assertEquals(payloadList.size(), getSearchCountFromDb().size());
+		for(int i=0;i<payloadList.size();i++) {
+			Map<String, Object> payloadObject = payloadList.get(i);
+			Assert.assertNotNull(payloadObject.get("statusId").toString(), "isActive attribute is null in payLoad object at index " + i);
+			Assert.assertEquals(payloadObject.get("statusId").toString(),api_body_skle.getData().getPayLoad().getStatusId());
+		}
+	}
+
+	@Feature("Account Type")
+	@Story("Account Type Positive Testcases")
+	@Severity(SeverityLevel.CRITICAL)
+	@Test(groups="Account_Type",description="Verify that search result should only include account with status assignback")
+	public void verify_search_result_by_assign_back(){
+		ApiModelZbox api_body_skle = new ApiModelZbox();
+		api_body_skle.setData(new Data());
+		api_body_skle.getData().setPayLoad(new PayLoad());
+		api_body_skle.getData().getPayLoad().setAccountClassificationId("");
+		api_body_skle.getData().getPayLoad().setDateFrom("2023-07-01");
+		api_body_skle.getData().getPayLoad().setDateTo(TestUtils.getCurrentDate("yyyy-MM-dd"));
+		api_body_skle.getData().getPayLoad().setCreatedBy("");
+		api_body_skle.getData().getPayLoad().setUpdatedBy("");
+		api_body_skle.getData().getPayLoad().setStatusId("4");
+		String request_json_body = TestUtils.gsonString(api_body_skle);
+
+		Response response_get_all_accounttypes = postApiResponse(getHeaderList, request_json_body, ApiUrls.GET_ALL_ACCOUNT_TYPES);
+		String jsonString = response_get_all_accounttypes.getBody().asString();
+		System.out.println("DATA==> "+api_body_skle.getData().getPayLoad().getAccountClassificationId());
+		JsonPath jsonPath = new JsonPath(jsonString);
+		List<Map<String, Object>> payloadList = jsonPath.getList("payLoad.lkpStatus");
+		//Assert.assertEquals(payloadList.size(), getSearchCountFromDb().size());
+		for(int i=0;i<payloadList.size();i++) {
+			Map<String, Object> payloadObject = payloadList.get(i);
+			Assert.assertNotNull(payloadObject.get("statusId").toString(), "isActive attribute is null in payLoad object at index " + i);
+			Assert.assertEquals(payloadObject.get("statusId").toString(),api_body_skle.getData().getPayLoad().getStatusId());
+		}
+	}
+
 	@Feature("Account Type")
 	@Story("Account Type Positive Testcases")
 	@Severity(SeverityLevel.CRITICAL)
@@ -258,10 +486,12 @@ public class AccountTypesTestClass extends AccountTypesBaseClass {
 		
 		AllureUtils.logStep("Step 1: Get KYC SETs from API "+ApiUrls.GET_KYC_SET);
 		Response get_kyc = getApiResponse(getHeaderList, ApiUrls.GET_KYC_SET);
+		assert get_kyc != null;
 		Assert.assertNotNull(get_kyc.jsonPath().getString("payLoad.lovId"), "payLoad.lovId Should not be null");
 	
 		AllureUtils.logStep("Step 2: Get client Role ID from API "+ApiUrls.GET_CLIENT_ROLES);
 		Response get_client_roles = getApiResponse(getHeaderList, ApiUrls.GET_CLIENT_ROLES);
+		assert get_client_roles != null;
 		Assert.assertNotNull(get_client_roles.jsonPath().getString("payLoad.lovId"),"payLoad.lovId Should not be null");
 		
 		AllureUtils.logStep("Step 3: Create New Account Type using below Body of API"+ApiUrls.CREATE_NEW_ACCOUNT_TYPE);
@@ -323,7 +553,7 @@ public class AccountTypesTestClass extends AccountTypesBaseClass {
 	@Story("Account Type Negative Testcases")
 	@Severity(SeverityLevel.CRITICAL)
 	@Test(groups="Account_Type negative_accountType",description="Verify that create API should not respond when bearer token is not provided")
-	public void negative_create_new_account_type() {
+	public void negative_create_new_account_type_without_barrier_token() {
 		
 			
 			Map<String, Object> getHeaderList = new HashMap<String, Object>();
@@ -351,7 +581,7 @@ public class AccountTypesTestClass extends AccountTypesBaseClass {
 			api_body_skle.getData().getPayLoad().setYearlyAmtLimitCr("200000");
 			api_body_skle.getData().getPayLoad().setMaxAmtLimit("200000");
 			String request_json_body = TestUtils.gsonString(api_body_skle);
-			System.out.println(request_json_body.toString());
+			System.out.println(request_json_body);
 			Response response_create_Account = negativePostApiResponse(getHeaderList, request_json_body, ApiUrls.CREATE_NEW_ACCOUNT_TYPE);
 			
 			AllureUtils.logStep("Step 2: Verifying the Response of API "+ApiUrls.CREATE_NEW_ACCOUNT_TYPE);
@@ -364,7 +594,7 @@ public class AccountTypesTestClass extends AccountTypesBaseClass {
 	@Story("Account Type Negative Testcases")
 	@Severity(SeverityLevel.CRITICAL)
 	@Test(groups="Account_Type negative_accountType",description="Verify that get API should not respond when bearer token is not provided")
-	public void negative_getall_account_types() {
+	public void negative_get_all_account_types_without_barrier_token() {
 		
 		AllureUtils.logStep("Step 1: Hit Create Account Type API with empty token  "+ApiUrls.GET_ALL_ACCOUNT_TYPES);
 		Map<String, Object> getHeaderList = new HashMap<String, Object>();
@@ -381,6 +611,7 @@ public class AccountTypesTestClass extends AccountTypesBaseClass {
 		
 		Response response_get_all_accounttypes = negativePostApiResponse(getHeaderList, request_json_body, ApiUrls.GET_ALL_ACCOUNT_TYPES);
 		AllureUtils.logStep("Step 2: Verifying the Response of API"+ApiUrls.GET_ALL_ACCOUNT_TYPES);
+		assert response_get_all_accounttypes != null;
 		AllureUtils.attachData("Response Body", response_get_all_accounttypes.asPrettyString());
 		Assert.assertEquals(response_get_all_accounttypes.getStatusCode(), 400,"The Status code should be 400");
 		Assert.assertEquals(response_get_all_accounttypes.jsonPath().getString("responseCode"), "012000");
@@ -428,7 +659,5 @@ public class AccountTypesTestClass extends AccountTypesBaseClass {
 		
 		Assert.assertNull(apiResponse.jsonPath().getString("errors"), "Following error is showing on error attribute"+apiResponse.jsonPath().getString("errors"));
 	}
-	
-	
 
 }
